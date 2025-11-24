@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego de Clickear</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #4facfe, #00f2fe);
+      color: white;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+    }
+
+    #contador {
+      font-size: 3em;
+      margin: 20px;
+      color: #ffeb3b;
+      text-shadow: 2px 2px 5px black;
+    }
+
+    button {
+      font-size: 2em;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 15px;
+      background-color: #ff5722;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      background-color: #ff7043;
+    }
+
+    #ganaste {
+      display: none;
+      font-size: 3em;
+      color: #00ff00;
+      animation: parpadeo 0.8s infinite;
+      text-shadow: 2px 2px 15px #000;
+    }
+
+    @keyframes parpadeo {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>¡Clicker Game!</h1>
+  <div id="contador">0</div>
+  <button id="clickBtn">¡CLICK!</button>
+  <div id="ganaste">🎉 ¡GANASTE! 🎉</div>
+
+  <script>
+    let contador = 0;
+    const boton = document.getElementById("clickBtn");
+    const marcador = document.getElementById("contador");
+    const mensajeGanaste = document.getElementById("ganaste");
+
+    boton.addEventListener("click", () => {
+      contador++;
+      marcador.textContent = contador.toLocaleString();
+
+      if (contador >= 100000) {
+        mensajeGanaste.style.display = "block";
+        boton.disabled = true;
+        boton.style.display = "none";
+        document.body.style.background = "linear-gradient(135deg, #00ff99, #00ccff)";
+      }
+    });
+  </script>
+</body>
+</html>
